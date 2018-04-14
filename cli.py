@@ -6,13 +6,32 @@ import os
 import subprocess
 
 import click
+import hupper
 
+from lndtap.app import create_app
 from lndtap.config import config
 
 
 @click.group()
 def cli():
     pass
+
+
+def run_app(host, port):
+    app = create_app()
+    app.run(host=host, port=port)
+
+
+@cli.command(short_help="Start Development Server with autoreloading capability")
+@click.option("--host", default="0.0.0.0", help="Host address to bind to")
+@click.option("--port", default=7000, help="Port to bind to")
+@click.option("--no-reload", default=False, help="Disable reloading")
+def runserver(host, port, no_reload=False):
+    if no_reload:
+        run_app(host, port)
+
+    else:
+        hupper.start_reloader("cli.run_app", worker_kwargs={"host": host, "port": port})
 
 
 @cli.command(
