@@ -6,6 +6,14 @@ name = "pypi"
 [dev-packages]
 
 [packages]
+grpcio = "*"
+grpcio-tools = "*"
+googleapis-common-protos = "*"
+click = "*"
+pyyaml = "*"
+sanic = "*"
+aiofiles = "*"
+aiohttp = "*"
 
 [requires]
 python_version = "3.6"
