@@ -1,7 +1,14 @@
 # -*- coding: utf-8 -*-
-
+import codecs
 import os
 from os.path import abspath, join, dirname
+
+import sys
+
+import aiofiles
+
+from lndtap.util import utils
+from lndtap.util.utils import parse_bool, get_local_ip, memoize
 
 os_env = os.environ.get
 
@@ -37,3 +44,38 @@ class Config:
 
     # DB
     DB_URI = "postgresql://riemann:riemann@localhost/riemann"
+
+    # LND
+    LND_ROOT = os_env("LND_ROOT", utils.get_app_data_dir("lnd"))
+
+    LND_TLS_CERT_PATH = os_env("LND_TLS_CERT_PATH", os.path.join(LND_ROOT, "tls.cert"))
+
+    LND_MACROON_ENABLED = parse_bool(os_env("LND_MACROON_ENABLED", "True"))
+
+    LND_MACAROON_PATH = os_env(
+        "LND_MACROONS_PATH", os.path.join(LND_ROOT, "admin.macaroon")
+    )
+
+    LND_NODE = os_env("LND_NODE", "127.0.0.1:10001")
+
+    LND_NODE_IP = os_env("LND_NODE_IP", get_local_ip())
+
+    LND_WALLET_PASS = "6tiHYnIdVdg6C5CH"
+
+    # MISC
+    FAUCET_NETWORK = os_env("FAUCET_NETWORK", "bitcoin")
+
+    @classmethod
+    @memoize
+    async def read_lnd_cert(cls):
+        print("Reaing Cert")
+        async with aiofiles.open(cls.LND_TLS_CERT_PATH, mode="rb") as certfd:
+            return await certfd.read()
+
+    @classmethod
+    @memoize
+    async def read_macaroon(cls):
+        print("Reading macaroon")
+        async with aiofiles.open(cls.LND_MACAROON_PATH, mode="rb") as macfd:
+            mac_bytes = await macfd.read()
+            return codecs.encode(mac_bytes, "hex")
