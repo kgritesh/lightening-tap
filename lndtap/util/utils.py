@@ -3,10 +3,13 @@ import asyncio
 import fnmatch
 import functools
 import importlib
+import json
 import os
 import socket
 
 import sys
+
+from google.protobuf.json_format import MessageToJson
 
 
 def find_matching_files(path, pattern):
@@ -101,3 +104,7 @@ def memoize(func):
             return val
 
     return wrapper
+
+
+def proto_to_dict(proto_message):
+    return json.loads(MessageToJson(proto_message))

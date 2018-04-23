@@ -6,6 +6,8 @@ from os.path import abspath, join, dirname
 import sys
 
 import aiofiles
+from pymacaroons import Macaroon, Verifier
+
 
 from lndtap.util import utils
 from lndtap.util.utils import parse_bool, get_local_ip, memoize
