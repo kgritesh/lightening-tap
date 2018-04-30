@@ -1,7 +1,7 @@
 {
     "_meta": {
         "hash": {
-            "sha256": "2d554ed78c0564bc99afcb154cbd4f441dd6733a7d5c5069652403af180fd11a"
+            "sha256": "a810d6d9b10b6763d6b15a0819f6e99f93ceefc42b4fb17314d2a29708a9370d"
         },
         "pipfile-spec": 6,
         "requires": {
@@ -116,6 +116,14 @@
             "index": "pypi",
             "version": "==6.7"
         },
+        "colorlog": {
+            "hashes": [
+                "sha256:418db638c9577f37f0fae4914074f395847a728158a011be2a193ac491b9779d",
+                "sha256:8b234ebae1ba1237bc79c0d5f1f47b31a3f3e90c0b4c2b0ebdde63a174d3b97b"
+            ],
+            "index": "pypi",
+            "version": "==3.1.4"
+        },
         "googleapis-common-protos": {
             "hashes": [
                 "sha256:c075eddaa2628ab519e01b7d75b76e66c40eaa50fc52758d8225f84708950ef2"
@@ -210,11 +218,11 @@
         },
         "marshmallow": {
             "hashes": [
-                "sha256:8740ada95f47fa19f905772aa4932dc5512226a90c30da5672d6d6bf3dd791a7",
-                "sha256:d3f31fe7be2106b1d783cbd0765ef4e1c6615505514695f33082805f929dd584"
+                "sha256:a3fe4bc61c4f6902b5cc95bd34cd0803e2a09ae0ea6bf09eb8f491acebe6934c",
+                "sha256:b73361eab812af97eaf8e8691333a1096787968450051d132c8b9fb90aa1db5a"
             ],
             "index": "pypi",
-            "version": "==2.15.0"
+            "version": "==2.15.1"
         },
         "multidict": {
             "hashes": [

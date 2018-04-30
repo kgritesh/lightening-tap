@@ -1,0 +1,65 @@
+version: 1
+disable_existing_loggers: False
+
+formatters:
+
+  colored_verbose:
+    '()': 'colorlog.ColoredFormatter'
+    format: '%(log_color)s%(asctime)s [%(process)d] [%(levelname)s]
+               filename=%(filename)s lineno=%(lineno)s
+               funcname=%(funcName)s %(message)s'
+    datefmt: '%Y-%m-%d %H:%M:%S'
+
+
+  colored_brief:
+    '()': 'colorlog.ColoredFormatter'
+    format: '%(log_color)s%(message)s'
+
+  colored_access:
+    '()': 'colorlog.ColoredFormatter'
+    "format": '%(log_color)s%(asctime)s - (%(name)s)[%(levelname)s][%(host)s]:
+              %(request)s %(message)s %(status)d %(byte)d'
+    "datefmt": "[%Y-%m-%d %H:%M:%S %z]"
+
+handlers:
+  console_brief:
+    level: DEBUG
+    class: logging.StreamHandler
+    formatter: colored_brief
+
+  console_generic:
+    level: INFO
+    class: logging.StreamHandler
+    formatter: colored_verbose
+
+  error_console:
+    level: ERROR
+    class: logging.StreamHandler
+    formatter: colored_verbose
+
+  access_console:
+     class: logging.StreamHandler
+     formatter: colored_access
+
+
+loggers:
+  lndtap:
+    handlers: [console_generic]
+    level: DEBUG
+    propagate: true
+
+  root:
+    handlers: [console_generic]
+    level: INFO
+
+  sanic.error:
+    handlers: [error_console]
+    level: ERROR
+
+  sanic.access:
+    handlers: [access_console]
+    level: DEBUG
+
+
+
+
