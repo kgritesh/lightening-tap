@@ -1,10 +1,10 @@
-import axios from 'axios';
+import axios from "axios";
 
-import Config from './Config';
+import Config from "./Config";
 
 export default {
   client: axios.create({
-    baseURL: '/api/v1/',
+    baseURL: "/api/v1/",
     timeout: Config.API_TIMEOUT,
     headers: {}
   }),
@@ -26,4 +26,4 @@ export default {
       data: channel
     });
   }
-}
+};
