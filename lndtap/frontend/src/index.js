@@ -3,6 +3,6 @@ import ReactDOM from 'react-dom';
 import "bootstrap/dist/css/bootstrap.min.css";
 
 import './css/index.css';
-import App from './pages/App';
+import Faucet from './pages/Faucet';
 
-ReactDOM.render(<App />, document.getElementById('root'));
+ReactDOM.render(<Faucet />, document.getElementById('root'));
